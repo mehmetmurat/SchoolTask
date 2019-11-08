@@ -59,5 +59,19 @@ namespace SchoolCore.DataAccess.EntityFramework
                 context.SaveChanges();
             }
         }
+        public void UpdateWithExcludeProperty(TEntity entity, string[] excludePropertyNames)
+        {
+            using (var context = new TContext())
+            {
+                var update = context.Entry(entity);
+                update.State = EntityState.Modified;
+                foreach (var name in excludePropertyNames)
+                {
+                    update.Property(name).IsModified = false;
+                }
+                context.SaveChanges();
+            }
+        }
+
     }
 }

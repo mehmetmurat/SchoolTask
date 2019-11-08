@@ -2,19 +2,17 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace SchoolEntities.Concrete
 {
-    public class TeacherSchools : IEntity
+    public class TeachersWithSchoolsForApi : IEntity
     {
-        
         [Key]
-        public int Id { get; set; }
         public int TeacherId { get; set; }
-       
-        public int SchoolId { get; set; }
-
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public long TcIdentityNumber { get; set; }
+        public List<School> Schools {get; set;}      
     }
 }

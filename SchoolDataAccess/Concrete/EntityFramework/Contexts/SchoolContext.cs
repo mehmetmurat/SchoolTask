@@ -14,6 +14,10 @@ namespace SchoolDataAccess.Concrete.EntityFramework.Contexts
         }
         public DbSet<School> Schools { get; set; }
         public DbSet<Student> Students { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<StudentTeachers> StudentTeachers { get; set; }
+        public DbSet<TeacherSchools> TeacherSchools { get; set; }
         public virtual DbSet<TeachersWithSchools> TeachersWithSchools { get; set; }
+        public virtual DbSet<Student> TeacherSudents { get; set; }
     }
 }

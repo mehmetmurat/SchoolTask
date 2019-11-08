@@ -13,5 +13,6 @@ namespace SchoolBusiness.Abstract
         IResult Add(Student student);
         IResult Delete(Student student);
         IResult Update(Student student);
+        IDataResult<Student> GetBySchoolId(int schoolId);
     }
 }

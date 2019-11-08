@@ -18,20 +18,39 @@ namespace SchoolBusiness.Concrete
         }
 
         public IResult Add(Student student)
-        {
-            _IStudentDal.Add(student);
-            return new SuccessResult(message: Contants.Messages.AddMessage);
+        {           
+            try
+            {
+                _IStudentDal.Add(student);
+                return new SuccessResult(message: Contants.Messages.AddMessage);
+            }
+            catch (Exception ex)
+            {
+                return new ErrorResult(message: ex.Message);
+            }
         }
 
         public IResult Delete(Student student)
-        {
-            _IStudentDal.Delete(student);
-            return new SuccessResult(message: Contants.Messages.DeleteMessage);
+        {           
+            try
+            {
+                _IStudentDal.Delete(student);
+                return new SuccessResult(message: Contants.Messages.DeleteMessage);
+            }
+            catch (Exception ex)
+            {
+                return new ErrorResult(message: ex.Message);
+            }
         }
 
         public IDataResult<Student> Get(int studentId)
         {
             return new SuccessDataResult<Student>(_IStudentDal.Get(filter: x => x.StudentId == studentId));
+        }
+
+        public IDataResult<Student> GetBySchoolId(int schoolId)
+        {
+            return new SuccessDataResult<Student>(_IStudentDal.Get(filter: x => x.SchoolId == schoolId));
         }
 
         public IDataResult<List<Student>> GetList()
@@ -40,9 +59,17 @@ namespace SchoolBusiness.Concrete
         }     
 
         public IResult Update(Student student)
-        {
-            _IStudentDal.Update(student);
-            return new SuccessResult(message: Contants.Messages.UpdateMessage); 
+        {           
+            try
+            {
+                _IStudentDal.Update(student);
+                return new SuccessResult(message: Contants.Messages.UpdateMessage);
+            }
+            catch (Exception ex)
+            {
+                return new ErrorResult(message: ex.Message);
+            }
+
         }
 
     }

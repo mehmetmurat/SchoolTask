@@ -19,14 +19,29 @@ namespace SchoolBusiness.Concrete
 
         public IResult Add(School school)
         {
-            _ISchoolDal.Add(school);
-            return new SuccessResult(message: Contants.Messages.AddMessage);
+            try
+            {
+                _ISchoolDal.Add(school);
+                return new SuccessResult(message: Contants.Messages.AddMessage);
+            }
+            catch (Exception ex)
+            {
+                return new ErrorResult(message: ex.Message);
+            }
+            
         }
 
         public IResult Delete(School school)
         {
-            _ISchoolDal.Delete(school);
-            return new SuccessResult(message: Contants.Messages.DeleteMessage);
+            try
+            {
+                _ISchoolDal.Delete(school);
+                return new SuccessResult(message: Contants.Messages.DeleteMessage);
+            }
+            catch (Exception ex)
+            {
+                return new ErrorResult(message: ex.Message);
+            }          
         }
 
         public IDataResult<School> Get(int schoolId)
@@ -39,16 +54,30 @@ namespace SchoolBusiness.Concrete
             return new SuccessDataResult<List<School>>(_ISchoolDal.GetList().ToList());
         }
 
-        public IDataResult<List<School>> GetListByTeacher(int teacherId)
-        {
-            return new SuccessDataResult<List<School>>(_ISchoolDal.GetList(filter:x => x.SchoolId == teacherId).ToList());
-        }
-
         public IResult Update(School school)
-        {
-            _ISchoolDal.Update(school);
-            return new SuccessResult(message: Contants.Messages.UpdateMessage); 
+        {            
+            try
+            {
+                _ISchoolDal.Update(school);
+                return new SuccessResult(message: Contants.Messages.UpdateMessage);
+            }
+            catch (Exception ex)
+            {
+                return new ErrorResult(message: ex.Message);
+            }
         }
 
+        public IResult UpdateWithExcludeProperty(School school, string[] excludePropertyNames)
+        {
+            try
+            {
+                _ISchoolDal.UpdateWithExcludeProperty(school, excludePropertyNames);
+                return new SuccessResult(message: Contants.Messages.UpdateMessage);
+            }
+            catch (Exception ex)
+            {
+                return new ErrorResult(message: ex.Message);
+            }
+        }
     }
 }

@@ -18,24 +18,45 @@ namespace SchoolBusiness.Concrete
         }
 
         public IResult Add(TeacherSchools teacherSchools)
-        {
-            _ITeacherSchoolsDal.Add(teacherSchools);
-            return new SuccessResult(message: Contants.Messages.AddMessage);
+        {            
+            try
+            {
+                _ITeacherSchoolsDal.Add(teacherSchools);
+                return new SuccessResult(message: Contants.Messages.AddMessage);
+            }
+            catch (Exception ex)
+            {
+                return new ErrorResult(message: ex.Message);
+            }
         }
 
         public IResult Delete(TeacherSchools teacherSchools)
-        {
-            _ITeacherSchoolsDal.Delete(teacherSchools);
-            return new SuccessResult(message: Contants.Messages.DeleteMessage);
+        {            
+            try
+            {
+                _ITeacherSchoolsDal.Delete(teacherSchools);
+                return new SuccessResult(message: Contants.Messages.DeleteMessage);
+            }
+            catch (Exception ex)
+            {
+                return new ErrorResult(message: ex.Message);
+            }
         }
         public IDataResult<List<TeacherSchools>> GetList()
         {
             return new SuccessDataResult<List<TeacherSchools>>(_ITeacherSchoolsDal.GetList().ToList());
         }
         public IResult Update(TeacherSchools teacherSchools)
-        {
-            _ITeacherSchoolsDal.Update(teacherSchools);
-            return new SuccessResult(message: Contants.Messages.UpdateMessage); 
+        {       
+            try
+            {
+                _ITeacherSchoolsDal.Update(teacherSchools);
+                return new SuccessResult(message: Contants.Messages.UpdateMessage);
+            }
+            catch (Exception ex)
+            {
+                return new ErrorResult(message: ex.Message);
+            }
         }
 
     }

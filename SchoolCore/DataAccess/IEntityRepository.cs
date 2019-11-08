@@ -12,6 +12,7 @@ namespace SchoolCore.DataAccess
         IList<T> GetList(Expression<Func<T, bool>> filter = null);
         void Add(T entity);
         void Update(T entity);
+        void UpdateWithExcludeProperty(T entity, string[] excludePropertyNames);        
         void Delete(T entity);
     }
 }

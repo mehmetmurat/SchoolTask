@@ -18,15 +18,29 @@ namespace SchoolBusiness.Concrete
         }
 
         public IResult Add(Teacher teacher)
-        {
-            _ITeacherDal.Add(teacher);
-            return new SuccessResult(message: Contants.Messages.AddMessage);
+        {          
+            try
+            {
+                _ITeacherDal.Add(teacher);
+                return new SuccessResult(message: Contants.Messages.AddMessage);
+            }
+            catch (Exception ex)
+            {
+                return new ErrorResult(message: ex.Message);
+            }
         }
 
         public IResult Delete(Teacher teacher)
-        {
-            _ITeacherDal.Delete(teacher);
-            return new SuccessResult(message: Contants.Messages.DeleteMessage);
+        {            
+            try
+            {
+                _ITeacherDal.Delete(teacher);
+                return new SuccessResult(message: Contants.Messages.DeleteMessage);
+            }
+            catch (Exception ex)
+            {
+                return new ErrorResult(message: ex.Message);
+            }
         }
 
         public IDataResult<Teacher> Get(int teacherId)
@@ -40,8 +54,15 @@ namespace SchoolBusiness.Concrete
         }
         public IResult Update(Teacher teacher)
         {
-            _ITeacherDal.Update(teacher);
-            return new SuccessResult(message: Contants.Messages.UpdateMessage); 
+            try
+            {
+                _ITeacherDal.Update(teacher);
+                return new SuccessResult(message: Contants.Messages.UpdateMessage);
+            }
+            catch (Exception ex)
+            {
+                return new ErrorResult(message: ex.Message);
+            }
         }
 
     }
